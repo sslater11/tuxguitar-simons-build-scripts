@@ -7,8 +7,6 @@ build_dir=$( realpath "$script_dir/../build-scripts/tuxguitar-linux-x86_64" )
 
 cd "$build_dir"
 
-rm -Rf target/
-
 # Install swt 4.11
 path_to_swt=$build_dir/swt-4.11-gtk-linux-x86_64/swt.jar
 mvn install:install-file -Dfile=$path_to_swt -DartifactId=org.eclipse.swt.gtk.linux.x86_64 -Dpackaging=jar -DgroupId=org.eclipse.swt -Dversion=4.11
@@ -24,8 +22,8 @@ path_to_swt=$build_dir/swt-4.13-gtk-linux-x86_64/swt.jar
 mvn install:install-file -Dfile=$path_to_swt -DartifactId=org.eclipse.swt.gtk.linux.x86_64 -Dpackaging=jar -DgroupId=org.eclipse.swt -Dversion=4.13
 
 
-# Compile
-mvn -P native-modules package
+# Clean project and Compile
+mvn clean -P native-modules package
 
 # If mvn didn't compile successfully
 exit_code=$?
