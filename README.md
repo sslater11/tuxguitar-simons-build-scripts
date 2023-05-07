@@ -83,7 +83,7 @@ cd tuxguitar-2.0beta
 git checkout 52f94768a51946a43357a29a9bee1b08264b967f
 ./tuxguitar-simons-build-scripts/meld_merge.sh README.md
 ```
-[<img src="pics/meld_merge_screenshot_small.png" width=160>](pics/meld_merge_screenshot_small.png)
+[<img src="pics/meld_merge_screenshot_small.png">](pics/meld_merge_screenshot_small.png)
 
 # Compilation errors
 ## Source option 5 is no longer supported
