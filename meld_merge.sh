@@ -31,7 +31,7 @@ if [ "$#" -eq  "0" ]; then
 	echo -e "\tand compare it to the README.md in TuxGuitar-v1.x"
 	echo -e "\t\tcd tuxguitar-2.0beta"
 	echo -e "\t\tgit checkout 52f94768a51946a43357a29a9bee1b08264b967f"
-	echo -e "\t\t./tuxguitar-simons-build-scripts/merger.sh README.md"
+	echo -e "\t\t./tuxguitar-simons-build-scripts/meld_merge.sh README.md"
 	echo ""
 	echo -e "$bold_red""Warnings:$reset_text"
 	echo -e "\tNotice the files from tuxguitar-2.0beta are copies and any changes will not be updated."
