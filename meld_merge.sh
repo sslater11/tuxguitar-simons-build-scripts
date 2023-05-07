@@ -46,10 +46,32 @@ else
 	
 	git show HEAD:"$1"  > $tmp_head_file
 	git show HEAD^:"$1" > $tmp_prev_commit_file
+	cp "$tmp_head_file" "$tmp_head_file.orig"
+	cp "$tmp_prev_commit_file" "$tmp_prev_commit_file.orig"
 	
 	meld $tmp_prev_commit_file $tmp_head_file "../tuxguitar/$1"
 	
-	rm $tmp_head_file
+	# Tell the user that making changes to the temp files does nothing.
+	prefix="" # Used to add a new line later, if both if statements are ran.
+	if cmp --silent -- "$tmp_prev_commit_file" "$tmp_prev_commit_file.orig"; then
+		# Do nothing, files are identical.
+		true
+	else
+		echo -e "$bold_red""Error: Changes lost!$reset_text"
+		echo -e "Changes to $tmp_prev_commit_file have been lost. These are never saved."
+		prefix="\n"
+	fi
+	if cmp --silent -- "$tmp_head_file" "$tmp_head_file.orig"; then
+		# Do nothing, files are identical.
+		true
+	else
+		echo -e "$prefix""$bold_red""Error: Changes lost!$reset_text"
+		echo -e "Changes to $tmp_head_file have been lost. These are never saved."
+	fi
+
 	rm $tmp_prev_commit_file
+	rm $tmp_prev_commit_file.orig
+	rm $tmp_head_file
+	rm $tmp_head_file.orig
 fi
 
